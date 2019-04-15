@@ -1,4 +1,4 @@
-ARG NODE_VERSION_TARGET=10.15.3
+ARG NODE_VERSION_TARGET=10
 
 FROM node:${NODE_VERSION_TARGET} as nodesrc
 
@@ -13,10 +13,10 @@ COPY --from=nodesrc /usr/local/bin/node /usr/local/bin/node
 
 USER root
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-; ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
-; ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
-; ln -s `find /opt -name yarn -type f` /usr/local/bin/yarn \
-; ln -s `find /opt -name yarnpkg -type f` /usr/local/bin/yarnpkg
+  ; ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+  ; ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
+  ; ln -s `find /opt -name yarn -type f` /usr/local/bin/yarn \
+  ; ln -s `find /opt -name yarnpkg -type f` /usr/local/bin/yarnpkg
 
 USER jenkins
 
