@@ -2,7 +2,7 @@ ARG NODE_VERSION_TARGET=8
 
 FROM node:${NODE_VERSION_TARGET} as nodesrc
 
-FROM jenkins/jnlp-slave
+FROM jenkins/inbound-agent
 
 COPY --from=nodesrc /opt /opt
 COPY --from=nodesrc /usr/local/lib/node_modules /usr/local/lib/node_modules
@@ -19,7 +19,5 @@ RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   ; ln -s `find /opt -name yarnpkg -type f` /usr/local/bin/yarnpkg
 
 USER jenkins
-
-WORKDIR ${HOME}
 
 LABEL maintainer="info@mjslabs.com"
